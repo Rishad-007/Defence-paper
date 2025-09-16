@@ -45,30 +45,42 @@
 \newcommand{\aastex}{AAS\TeX}
 \newcommand{\latex}{La\TeX}
 
+% Define custom commands for thesis
+\newcommand{\VAT}{VAT}
+\newcommand{\LSTM}{LSTM}
+\newcommand{\CF}{Causal Forest}
+
 % Define keywords command for article class
 \newcommand{\keywords}[1]{\noindent\textbf{Keywords:} #1}
 
 \begin{document}
 
-
+% Front matter with roman numerals
+\pagenumbering{roman}
 
 % Include titlepage
 \input{sections/tittlepage}
 
-% Standard title for document
-
-% Include sections
+% Abstract
 \input{sections/abstract}
 
 % Table of Contents
 \newpage
 \tableofcontents
-\newpage
 
 % Table of Figures
-\listoffigures
 \newpage
+\listoffigures
 
+% Table of Tables
+\newpage
+\listoftables
+
+% Main content with arabic numerals
+\newpage
+\pagenumbering{arabic}
+
+% Main sections
 \input{sections/introduction}
 \input{sections/literature-review}
 \input{sections/data}
@@ -76,9 +88,11 @@
 \input{sections/results}
 \input{sections/discussion}
 \input{sections/conclusion}
-\input{sections/appendix}
 
 % Bibliography
 \input{bibliography/bibliography}
+
+% Appendices
+\input{sections/appendix}
 
 \end{document}
