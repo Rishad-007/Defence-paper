@@ -20,6 +20,26 @@
 \usepackage{subcaption}
 \usepackage[skip=10pt]{caption}
 
+% Table of contents formatting
+\usepackage{tocloft}
+\usepackage{titletoc}
+
+% Configure table of contents style
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+\renewcommand{\cftdot}{.}
+\renewcommand{\cftdotsep}{2}
+\setlength{\cftbeforesecskip}{3pt}
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\small}
+\renewcommand{\cftsubsubsecfont}{\footnotesize}
+
+% Configure table of figures style
+\renewcommand{\cftloftitlefont}{\Large\bfseries}
+\renewcommand{\cftfigfont}{Figure }
+\renewcommand{\cftfigaftersnum}{:}
+\setlength{\cftfigindent}{0pt}
+\setlength{\cftfignumwidth}{4em}
+
 % Author macros
 \newcommand{\vdag}{(v)^\dagger}
 \newcommand{\aastex}{AAS\TeX}
@@ -39,6 +59,16 @@
 
 % Include sections
 \input{sections/abstract}
+
+% Table of Contents
+\newpage
+\tableofcontents
+\newpage
+
+% Table of Figures
+\listoffigures
+\newpage
+
 \input{sections/introduction}
 \input{sections/literature-review}
 \input{sections/data}
