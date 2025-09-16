@@ -1,8 +1,8 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage{lineno}
+\usepackage{lineno} % Line numbers package (currently disabled)
 \usepackage{xcolor}
 \usepackage{soul}
-\linenumbers
+% \linenumbers  % Disabled per request to remove line numbering
 
 % Page layout - reduce margins for more text width
 \usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
@@ -10,7 +10,8 @@
 % Required packages
 \usepackage{amsmath}
 \usepackage{natbib}
-\usepackage{hyperref}
+% Hyperref with subdued link styling (no colored boxes)
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue, filecolor=black, menucolor=black]{hyperref}
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{longtable}

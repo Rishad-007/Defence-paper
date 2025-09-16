@@ -1,33 +1,72 @@
-% Introduction section template
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 
-% Your introduction goes here.
+Fiscal policy decisions, such as adjusting Value Added Tax (VAT), are among the most influential tools available to governments for managing economic performance and public finance. Yet, determining the true impact of such interventions remains a profound challenge. Policy changes often ripple across multiple layers of the economy---affecting inflation, consumer behavior, income distribution, and macroeconomic stability. Accurately predicting these outcomes, both before and after implementation, is essential for minimizing policy regret and supporting inclusive economic planning.
 
-In the rapidly evolving landscape of economic policy analysis, the integration of advanced computational methods with traditional econometric approaches has become increasingly vital. Policymakers and researchers are confronted with complex, high-dimensional datasets and dynamic economic environments that challenge the limits of conventional analytical tools. As a result, there is a growing need for innovative frameworks that can harness the predictive power of machine learning while preserving the interpretability and theoretical rigor of econometric models.
+\subsection{Background \& Motivation}\label{subsec:background}
 
-One of the most consequential areas of economic policy is the design and evaluation of tax interventions, such as changes in value-added tax (VAT) rates. VAT policies have far-reaching implications for government revenue, consumer behavior, business investment, and overall economic growth. However, accurately quantifying the effects of such policies remains a formidable challenge due to the interplay of multiple macroeconomic factors, structural shifts, and heterogeneous responses across sectors and populations.
+VAT plays a central role in \textbf{macroeconomic} and \textbf{fiscal management}, particularly in developing and emerging economies. Unlike income taxes, VAT can be applied broadly and collected efficiently, making it a key instrument for raising government revenue, maintaining budgetary discipline, and funding social programs. However, its effects are not neutral: VAT increases may lead to inflationary pressure, reduced consumption, and adverse welfare effects---especially on lower-income populations.
 
-Recent advances in machine learning, particularly in time-series forecasting and causal inference, offer promising avenues for addressing these challenges. Techniques such as Long Short-Term Memory (LSTM) neural networks and causal forests enable the modeling of complex, nonlinear relationships and the estimation of both average and heterogeneous treatment effects. When combined with robust econometric methods, these tools can provide deeper insights into the mechanisms and outcomes of policy interventions.
-
-This study proposes a hybrid analytical framework that leverages both machine learning and econometric techniques to evaluate the impact of VAT policy changes. By utilizing a comprehensive dataset of macroeconomic indicators and employing rigorous validation strategies, the research aims to enhance the accuracy, reliability, and interpretability of policy impact assessments. The findings are intended to inform policymakers and contribute to the development of more effective, data-driven economic strategies in an increasingly complex world.
-
-\subsection{Background and Motivation}\label{sec:background}
-
-Value-Added Tax (VAT) plays a central role in macroeconomic and fiscal management, particularly in developing and emerging economies. Unlike many forms of direct taxation, VAT can be applied broadly across sectors and collected efficiently through its multistage structure. This makes it a critical instrument for raising government revenue, sustaining budgetary discipline, financing public investment, and supporting social protection programs. However, its effects are not neutral. Increases in VAT rates may propagate through supply chains, generating inflationary pressure, constraining real consumption, and potentially exacerbating welfare burdens on lower-income households that devote a larger share of expenditure to taxable goods.
-
-Designing effective VAT policy thus requires balancing revenue mobilization objectives against distributional and macroeconomic risks. Policymakers must evaluate not only short-run price and demand adjustments but also medium-term effects on output dynamics, employment, investment incentives, and sectoral reallocation. These multifaceted responses are shaped by expectations, market structure, compliance behavior, and heterogeneous consumption patterns—features that complicate inference in observational economic data.
-
-Historically, the empirical assessment of VAT changes and related fiscal interventions has relied on conventional econometric methodologies such as Ordinary Least Squares (OLS), Difference-in-Differences (DiD), and Vector Autoregression (VAR). While foundational and still valuable, these approaches face well-documented limitations when applied to modern macro‑fiscal analysis:
+To assess such trade-offs, policymakers have traditionally relied on \textbf{econometric methods} such as Ordinary Least Squares (OLS), Difference-in-Differences (DiD), and Vector Autoregression (VAR). While these tools have been foundational in empirical economics, they suffer from significant limitations:
 
 \begin{itemize}
-  \item \textbf{Strong parametric restrictions}: Assumptions of linearity, additive separability, and homoscedastic errors can misrepresent nonlinear and state-dependent dynamics.
-  \item \textbf{Limited handling of high-dimensional confounding}: Conventional models struggle to flexibly adjust for interacting macro indicators, structural breaks, and latent drivers.
-  \item \textbf{Weak extrapolation under novel regimes}: Forecast performance deteriorates when policy shifts push the economy outside historically observed states.
-  \item \textbf{Insufficient heterogeneity resolution}: Average treatment effect estimates obscure distributional impacts across sectors, income strata, and temporal horizons.
-  \item \textbf{Sensitivity to model misspecification}: Small specification errors can propagate into large biases in counterfactual policy simulations.
+    \item \textbf{Strong parametric assumptions} (e.g., linearity, homoscedasticity) that may not reflect complex real-world dynamics.
+    \item \textbf{Limited capacity} to handle high-dimensional or non-linear confounding structures in observational data.
+    \item \textbf{Weak generalization} beyond the observed data, making it difficult to forecast under novel policy conditions.
+    \item \textbf{Insufficient granularity}, especially in detecting heterogeneous effects across different socioeconomic groups.
 \end{itemize}
 
-These constraints reduce the reliability of counterfactual estimates and limit the precision with which policy trade-offs (e.g., revenue versus welfare loss) can be quantified. As fiscal systems become more data-rich and policy environments more volatile, there is a pressing need for analytical frameworks that (i) accommodate nonlinear interactions, (ii) exploit high-dimensional information efficiently, (iii) generate stable forecasts under structural change, and (iv) recover heterogeneous causal effects relevant for targeted interventions.
+These constraints reduce the reliability of counterfactual estimates derived from traditional models and limit their usefulness in policy design, especially in contexts requiring precise targeting and risk minimization.
+
+\subsection{Research Question}\label{subsec:research_question}
+
+\begin{quote}
+\textbf{Primary Research Question:}
+
+How can a hybrid causal machine learning framework---combining forecasting, causal estimation, and heterogeneity modeling---enhance counterfactual policy analysis compared to traditional inference?
+
+\textbf{Sub-Questions:}
+
+\begin{enumerate}
+    \item How do macroeconomic indicators respond to VAT changes under deep learning-based forecasting models?
+    \item How effectively can DoubleML isolate VAT effects while adjusting for high-dimensional confounders?
+    \item How does the effect of VAT vary across demographic subgroups, and how can Causal Forests reveal this heterogeneity?
+    \item Can the integration of these models reduce expected policy regret and improve the design of future fiscal interventions?
+\end{enumerate}
+\end{quote}
+
+\subsection{Contributions}\label{subsec:contributions}
+
+This thesis makes the following contributions:
+
+\begin{itemize}
+    \item \textbf{A unified hybrid framework} for causal economic policy evaluation, combining diverse modeling paradigms including deep learning and causal inference.
+    
+    \item \textbf{A modular causal pipeline} consisting of discovery, estimation, validation, and simulation, tailored for robust counterfactual reasoning in fiscal policy.
+    
+    \item \textbf{Empirical results} derived from macroeconomic time-series data and household-level demographic data.
+    
+    \item \textbf{Granular treatment effect} estimation, allowing for the discovery of group-specific policy impacts using Causal Forests.
+    
+    \item \textbf{Comparative analysis}, demonstrating the advantages of this hybrid framework over traditional econometric approaches in flexibility, robustness, and real-world relevance.
+\end{itemize}
+
+\subsection{Structure of the Paper}\label{subsec:structure}
+
+The rest of the paper is structured as follows:
+
+\begin{itemize}
+    \item \textbf{Section~\ref{sec:litreview}} reviews existing literature on causal inference, machine learning for economics, and counterfactual analysis.
+    
+    \item \textbf{Section~\ref{sec:data}} details the datasets, data preprocessing, and variable construction.
+    
+    \item \textbf{Section~\ref{sec:methods}} presents the hybrid methodological framework, outlining each model and integration strategy.
+    
+    \item \textbf{Section~\ref{sec:results}} reports experimental results, including visualizations and robustness checks.
+    
+    \item \textbf{Section~\ref{sec:discussion}} discusses key findings, policy implications, and the comparative strengths of this framework.
+    
+    \item \textbf{Section~\ref{sec:conclusion}} concludes with a summary and directions for future research.
+\end{itemize}
 
 Recent advances in machine learning and modern causal inference offer promising avenues to address these gaps. Sequence models such as Long Short-Term Memory (LSTM) networks capture temporal dependencies and regime shifts, while causal forests and related meta-learners enable flexible estimation of heterogeneous treatment effects without imposing restrictive functional forms. When combined with principled econometric structure—through validation, identification strategies, and interpretability diagnostics—these methods can enhance both predictive accuracy and causal robustness.
 
