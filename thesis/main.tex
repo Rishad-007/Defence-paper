@@ -1,0 +1,57 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{lineno}
+\usepackage{xcolor}
+\usepackage{soul}
+\linenumbers
+
+% Page layout - reduce margins for more text width
+\usepackage[left=2cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% Required packages
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[skip=10pt]{caption}
+
+% Author macros
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand{\aastex}{AAS\TeX}
+\newcommand{\latex}{La\TeX}
+
+% Define keywords command for article class
+\newcommand{\keywords}[1]{\noindent\textbf{Keywords:} #1}
+
+\begin{document}
+
+\title{A Causal Machine Learning Approach to Economic Policy Simulation and Decision-Making}
+
+\author{MD.\ Rishad Nur \\
+Department of Computer Science and Engineering \\
+Begum Rokeya University, Rangpur, Bangladesh \\
+\texttt{rishad.nur007@gmail.com}}
+
+\date{\today}
+\maketitle
+
+% Include sections
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/literature-review}
+\input{sections/data}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\input{sections/appendix}
+
+% Bibliography
+\input{bibliography/bibliography}
+
+\end{document}
