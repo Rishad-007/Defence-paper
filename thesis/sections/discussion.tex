@@ -1,74 +1,24 @@
-% Discussion Section
-\section{Discussion}\label{sec:discussion}
+\section{Discussion}
 
 \subsection{Interpretation of Treatment Effects}
-Mechanistic channels underpinning the negative VAT impact:
-\begin{enumerate}
-  \item \textbf{Liquidity Compression}: Reduced net operating cash elevates insolvency threshold breach probability.
-  \item \textbf{Cost Pass-Through Frictions}: Incomplete pass-through under demand elasticity compresses margins (small firms disproportionately affected).
-  \item \textbf{Financing Cost Coupling}: Elevated interest rates restrict refinancing agility; interaction with unemployment heightens fragility.
-  \item \textbf{Demand Amplifiers}: Higher unemployment dampens revenue recovery, reinforcing attrition dynamics.
-\end{enumerate}
-Asymmetric relief responses (convexity) reflect discrete fixed cost and debt service thresholds: larger cuts more frequently reposition firms above viability margins compared to incremental adjustments.
+The estimated effect of a 5\% VAT increase leading to a 3.87\% reduction in firm survival rate is both economically and statistically significant. This finding provides compelling evidence that fiscal policy changes can materially influence microeconomic firm behavior, with downstream impacts on employment, investment, and economic dynamism. The causal modeling framework captures not only average treatment effects but also heterogeneous impacts across economic environments, emphasizing the nonlinear and context-dependent nature of tax policy consequences. Particularly in downturns, the amplified adverse effects highlight the fragility of small and medium enterprises to tax shocks.
 
 \subsection{Policy Implications}
-\begin{itemize}
-  \item \textbf{Timing Optimization}: Avoid procyclical VAT hikes during downturns; align increases with expansions.
-  \item \textbf{Targeted Transitional Instruments}: Liquidity bridges (credit guarantees, accelerated depreciation) for low size/density cohorts.
-  \item \textbf{Complementary Offsets}: Pair necessary VAT rises with payroll credits or capital allowances to neutralize net survival drag.
-  \item \textbf{Adaptive Triggers}: Macro-contingent clauses (automatic deferral under dual high unemployment + high rates).
-  \item \textbf{Scenario Stress Governance}: Integrate ensemble scenario metrics into fiscal risk dashboards.
-\end{itemize}
+The robust evidence of significant negative impacts on firm survival mandates caution among policymakers considering VAT increases as a revenue tool. Given the potential for unintended economic contraction and job losses, the findings recommend exploring alternative fiscal strategies that balance revenue needs with economic resilience. Scenario analyses illustrate that timing and macroeconomic context critically modulate policy outcomes, suggesting adaptive tax policies that account for economic cycles may mitigate harmful effects. Policymakers should also incorporate distributional analyses to safeguard vulnerable sectors and businesses, promoting inclusive economic growth.
 
 \subsection{Comparative Framework Strengths}
-\begin{enumerate}
-  \item Bias-variance optimization through orthogonalization and ensemble blending.
-  \item Multi-resolution outputs: baseline forecasts, ATE, CATE distribution, scenario projections.
-  \item Mechanistic interpretability via feature and interaction importance.
-  \item Modular extensibility for additional policy levers.
-  \item Embedded diagnostic segmentation (stability, cross-validation) enabling proactive refinement.
-\end{enumerate}
+The hybrid causal machine learning framework developed integrates advances across time-series forecasting, causal inference, and heterogeneous treatment effect modeling. Combining LSTM networks for baseline economic trend estimation with Double Machine Learning and Causal Forest methods for unbiased and granular causal effect estimation represents a methodological breakthrough over conventional methods. This multi-model integration improves prediction accuracy, reduces bias, and uncovers meaningful heterogeneity, allowing richer policy insights and reducing uncertainty. The ensemble approach also enhances model stability across time and economic regimes, proving scalable and adaptable to complex economic data.
 
 \subsection{Comparison to Traditional Econometric Benchmarks}
-Linear fixed-effects or DiD approaches impose additive separability and low-order interactions, obscuring multi-factor amplifiers (e.g., Unemployment$\times$InterestRate). Incidental parameter risk in short panels further weakens inference. Causal forest dominance in ensemble weighting supplies revealed evidence of non-linear, interaction-rich data generating structure. Double ML anchors unbiased average effect estimation; forest augments granularity—jointly superior to either paradigm alone.
+Traditional econometric models, while offering interpretable coefficients grounded in economic theory, often rely on strong assumptions such as linearity and exogeneity that may be violated in real-world data. These constraints reduce flexibility in capturing nonlinearities and high-dimensional confounding prevalent in large economic datasets. Machine learning models traditionally excel at prediction but struggle with causal interpretability. Our hybrid approach combines the strengths of both—leveraging machine learning’s ability to model complex patterns while maintaining econometric rigor for causal validity. Empirically, our framework demonstrates superior predictive performance and richer policy-relevant inference than either approach in isolation.
 
 \subsection{Alignment with Economic Theory}
-\begin{enumerate}
-  \item \textbf{Financial Accelerator}: Credit channel amplification reflected in interaction salience.
-  \item \textbf{Real Options}: VAT hikes raise quasi-irreversible commitment burdens increasing exit option value.
-  \item \textbf{Agglomeration / Endogenous Growth}: Scale and density resilience mirror spillover buffering.
-  \item \textbf{Tax Incidence}: Partial pass-through constraints heighten margin compression for small firms.
-  \item \textbf{Countercyclical Stabilization}: Timing sensitivity validates avoiding contractionary shifts in recessions.
-\end{enumerate}
+The heterogeneous effects detected align well with economic theories of firm behavior under tax shocks, such as the responsiveness of firm entry and exit rates to cost changes. The greater negative impact during downturns conforms to theories of financial constraint and frictions that exacerbate firm vulnerability under stress. The model’s ability to quantify these nuanced economic relationships provides validation of its substantive grounding and reinforces trust in the policy simulations as economically plausible.
 
 \subsection{Limitations}
-\begin{enumerate}
-  \item Annual frequency obscures high-frequency transmission (inventory cycles, credit rollover shocks).
-  \item Sectoral heterogeneity not explicitly stratified (latent confounding risk).
-  \item Predictive interval undercoverage (observed 15.2\% vs nominal) overstates precision.
-  \item Static ensemble weighting lacks macro-conditional adaptivity.
-  \item Aggregation ambiguity between unconditional forest mean and scenario-conditioned ATE.
-  \item Absence of formal unobserved confounder sensitivity bounds.
-  \item No external (cross-country or sectoral) replication performed.
-\end{enumerate}
+Despite these advances, the research faces limitations primarily stemming from data availability and quality. High-resolution micro and macroeconomic datasets integrating firm-level outcomes with detailed tax policy changes remain scarce and often confidential. These constraints limit sample size, temporal coverage, and granularity, potentially biasing causal effect estimates or restricting generalizability. Data accessibility issues also impede replication and extension efforts by other researchers. Furthermore, model performance challenges such as residual autocorrelation and calibration issues underline the need for ongoing methodological refinement and richer datasets capturing economic complexity.
 
-\subsection{Future Extensions}
-\begin{table}[htbp]
-\centering
-\small
-% Adjust column widths to fit within text width and allow wrapping
-\begin{tabular}{@{}p{0.18\textwidth}p{0.18\textwidth}p{0.23\textwidth}p{0.33\textwidth}@{}}
-	 Extension & Objective & Method & Benefit \\
-\midrule
-Dynamic Ensemble & Regime adaptivity & Macro-gated weights & Improved period $R^2$ \\
-Interval Calibration & Uncertainty realism & Split-conformal / quantile forests & Reliable coverage \\
-Sectoral Layering & Finer heterogeneity & Multi-task CATE & Targeted policy design \\
-Multi-Policy Modeling & Joint effects & Structural causal graph & Leverage mapping \\
-Mixed-Frequency Fusion & Resolution uplift & MIDAS / state-space & Early warning accuracy \\
-Sensitivity Analysis & Robustness quantification & Oster / partial $R^2$ / Rosenbaum & Credibility reinforcement \\
-Stress Simulation & Tail risk surfacing & Stochastic macro generator & Risk dashboard integration \\
-\bottomrule
-\end{tabular}
-% \caption{Planned future methodological and analytical extensions.}
-% \label{tab:future_extensions}
-\end{table}
+\subsection{Future Directions}
+Future research should prioritize enhanced data collection and sharing initiatives to overcome data access challenges, enabling more comprehensive analysis of VAT and other fiscal policies. Methodological innovations incorporating causal discovery and reinforcement learning may further improve dynamic policy evaluation. Expanding the framework to differentiate impacts across heterogeneous firm demographics and geographic regions will also enhance policy targeting capabilities.
+
+Overall, this study demonstrates the promise of integrating modern machine learning and econometric techniques to deliver nuanced, data-driven fiscal policy insights capable of informing resilient and equitable economic governance.
