@@ -12,9 +12,20 @@ The integrated dataset spans 1977--2022 (45 annual observations), combining macr
 Missingness was negligible; no synthetic imputation required. Volatility features derived as rolling standard deviations; interaction and polynomial terms generated for nuisance models. Continuous variables standardized where required (forest splits invariant). Forecast models were trained strictly on historical prefixes to avoid leakage.
 
 A modular hybrid architecture partitions responsibilities: (i) baseline forecasting; (ii) average causal identification; (iii) heterogeneity discovery; (iv) scenario synthesis. This prevents overloading a single model with incompatible objectives and preserves interpretability via decomposition.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{/Users/rishad/Downloads/Causal_inference_v2/thesis/exports/economic_data_overview.png}
+\caption{Economic Data Overview: Time series visualization of key macroeconomic indicators and firm dynamics metrics spanning 1977--2022.}
+\label{fig:economic_data_overview}
+\end{figure}
+.
+
+
+
 
 \subsection{Model Suite and Functional Differentiation}
-\begin{table}[htbp]
+.
+\begin{table}[H]
 \centering
 \small
 \caption{Model Components: Objectives, Mechanisms, Outputs, and Trade-offs}
@@ -87,6 +98,20 @@ Resilience correlates with firm size and density; stress and high rates widen un
 \paragraph{Causal Forest:} Top absolute correlations: firm\_size\_proxy ($|r|\approx0.631$), firm\_density (0.631), InterestRate (0.514), economic\_stress (0.502), Unemployment (0.411), regime encoding (0.337), Inflation (0.333), gdp\_volatility (0.333). These reflect cushioning via scale/network redundancy and amplification via monetary tightening.
 
 \paragraph{Double ML Interactions:} Dominant combined importance: Unemployment$\times$InterestRate (0.295), Inflation$\times$InterestRate (0.130), GDP\_Growth$\times$Inflation (0.111), GDP\_Growth$\times$InterestRate (0.064), Inflation$\times$Unemployment (0.062). Non-separability validates flexible nuisance modeling.
+
+\section{Hybrid Model Results: Policy Impact and Uncertainty}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{/Users/rishad/Downloads/Causal_inference_v2/thesis/exports/figure3_hybrid_model_results.png}
+\caption{Hybrid Model Results: Policy impact scenarios and heterogeneous treatment effect analysis showing VAT policy interventions and their influence on firm survival rates across different macroeconomic conditions.}
+\label{fig:hybrid_model_results}
+\end{figure}
+
+The effectiveness of the proposed hybrid causal machine learning framework is illustrated in Figure~\ref{fig:hybrid_model_results}, which summarizes the policy scenario simulations and heterogeneous treatment effect analysis. The results demonstrate how different VAT policy interventions, including tax cuts and increases, influence firm survival rates over time under realistic macroeconomic conditions. Comparative survival scenarios show that aggressive tax relief delivers proportionally greater improvements in firm resilience, whereas VAT increases substantially reduce survival, particularly during downturns. The hybrid model's ensemble predictions integrate LSTM, DoubleML, and Causal Forest methods, providing robust uncertainty quantification and enabling policymakers to assess distributional impacts and risk bands across economic contexts. Model outputs reveal that the framework's combination of time-series forecasting, unbiased treatment effect estimation, and heterogeneity detection significantly enhances the reliability and interpretability of policy impact analysis in comparison to traditional econometric approaches.
+
+
 
 \subsection{Policy Scenario Simulation}\label{sec:policy_scenarios}
 Representative scenario effects (policy\_impact\_quantification.csv):

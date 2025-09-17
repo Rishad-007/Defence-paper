@@ -28,7 +28,12 @@ Figure~\ref{fig:modelplan} provides a visual overview of the proposed hybrid cau
 \end{itemize}
 
 \subsection{Double Machine Learning (DoubleML)}\label{subsec:doubleml}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/dml_analysis_results.png}
+    \caption{DoubleML Causal Effect Estimation Results}
+    \label{fig:dml_analysis_results}
+\end{figure}
 \subsubsection{Core Principle}
 The fundamental innovation of DoubleML lies in its orthogonalization approach, which separates the estimation of treatment effects from nuisance parameters. This prevents regularization bias that commonly affects traditional high-dimensional econometric models.
 
@@ -39,9 +44,19 @@ The fundamental innovation of DoubleML lies in its orthogonalization approach, w
     \item \textbf{Final Effect Estimation}: The causal effect is estimated using the orthogonalized variables, yielding unbiased treatment effect estimates with proper statistical inference.
 \end{enumerate}
 
+
 \subsection{LSTM Time-Series Model}\label{subsec:lstm}
 
+
+
 \subsubsection{Theoretical Motivation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/lstm_training_history.png}
+    \caption{LSTM Training and Validation Loss History}
+    \label{fig:lstm_training_history}
+\end{figure}
+
 Traditional time-series methods like ARIMA assume linear relationships and struggle with complex, multi-scale dependencies common in economic data. LSTM networks excel at capturing long-term dependencies while avoiding the vanishing gradient problem.
 
 \subsubsection{Architecture Design}
@@ -71,6 +86,17 @@ The training protocol incorporates several advanced techniques:
 \end{itemize}
 
 \subsection{Causal Forests}\label{subsec:cforests}
+
+\subsubsection{Causal Forest Results}
+The following figure presents the causal forest analysis results, illustrating the heterogeneous treatment effects across different subgroups and covariates:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/causal_forest_results.png}
+    \caption{Causal Forest Analysis Results}
+    \label{fig:causal_forest_results}
+\end{figure}
+
 
 \subsubsection{Theoretical Foundation}
 Causal Forests extend random forest methodology to identify treatment effect heterogeneity without requiring researchers to pre-specify relevant subgroups. This data-driven approach discovers how policy effects vary across different contexts automatically.
@@ -133,3 +159,9 @@ The following figure illustrates the complete integration of all methodological 
 \end{figure}
 
 This comprehensive architecture demonstrates how causal discovery, DoubleML estimation, LSTM forecasting, and Causal Forest heterogeneity analysis work together to provide robust policy evaluation capabilities under uncertainty.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/hybrid_policy_analysis_comprehensive.png}
+    \caption{Comprehensive Hybrid Policy Analysis Workflow}
+    \label{fig:hybrid_policy_analysis_comprehensive}
+\end{figure}
