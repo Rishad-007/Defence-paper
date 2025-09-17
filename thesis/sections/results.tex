@@ -106,6 +106,13 @@ Semi-elasticity (VAT): $-0.0387 / 0.05 \approx -0.774$ p.p. survival per 1\% VAT
 
 \paragraph{Normalization Clarification:} Table 3 scaled impacts (visual small magnitudes) do not contradict raw statistical significance; cite raw scenario CIs for inference.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{/Users/rishad/Downloads/Causal_inference_v2/thesis/exports/interactive_vat_5.0percent_analysis.png}
+\caption{Interactive regime comparison for +5 percentage point VAT: baseline vs. post-shock survival across macro states.}
+\label{fig:interactive_vat_5pct}
+\end{figure}
+
 \paragraph{Macro-Conditioned VAT Stress (vat\_increase\_scenario\_analysis.csv):}
 \begin{center}
 \begin{tabular}{lcccccc}
@@ -119,7 +126,119 @@ Downturn & 82.9\% & 81.2\% & 84.6\% & $-4.6$ to $-3.9$\% & High & Postpone \\
 \end{tabular}
 \end{center}
 
+\paragraph{Interactive Analysis: 5\% VAT Increase.} An interactive diagnostic (exported artifacts: \texttt{interactive\_vat\_5.0percent\_analysis.png}, \texttt{interactive\_vat\_5.0percent\_impact.csv}) was used to probe regime-conditioned outcomes under a fixed +5 p.p. VAT shock. It harmonizes baseline (LSTM) trajectories, estimated causal decrement, and ensemble-adjusted final survival.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Interactive Scenario Breakdown (5\% VAT Increase)}
+\label{tab:interactive_vat_5pct}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{l c c c c c c}
+Context & Baseline (\%) & Effect (p.p.) & Final (\%) & CI Low & CI High & Recommendation \\
+\midrule
+Expansion & 91.7 & $-4.10$ & 87.6 & 86.1 & 89.1 & Defer (medium risk) \\
+Stable Growth & 90.1 & $-3.87$ & 86.2 & 84.7 & 87.7 & Caution (moderate risk) \\
+Downturn & 87.4 & $-4.57$ & 82.9 & 81.2 & 84.6 & Postpone (high risk) \\
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+\footnotesize \textit{Notes:} Baseline = ensemble counterfactual without VAT hike (proxied via LSTM baseline plus alignment adjustments). Effect derived from Double ML ATE scaled by regime interaction adjustments (Causal Forest CATE modulation). Final = Baseline + Effect. Intervals correspond to hybrid predictive CI; minor rounding differences vs earlier table reflect formatting.
+\end{table}
+
+% \begin{figure}[htbp]
+% \centering
+% \includegraphics[width=0.63\textwidth]{thesis/exports/interactive_vat_5.0percent_analysis.png}
+% \caption{Interactive regime comparison for +5 p.p. VAT: baseline vs. post-shock survival across macro states.}
+% \label{fig:interactive_vat_5pct}
+% \end{figure}
+
+\paragraph{Interactive Summary.} Average regime-conditioned effect: $-4.18$ p.p.; best-case (Expansion) survival 87.6\%; worst-case (Downturn) 82.9\%. Approx. affected firms: $\sim$22,800. Overall qualitative risk: \emph{High}, escalating to \emph{Very High} if macro indicators signal impending contraction.
+
+\paragraph{VAT Rate Sensitivity (Summary).} Using the semi-elasticity ($\approx -0.77$ p.p. survival per +1 p.p. VAT) we project impacts for discrete increases (1--10 p.p.). Effects scale near-linearly across tested bands; any future deviation would flag emerging non-linear thresholds.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{VAT Increase Scenario Sensitivity (Derived from Semi-Elasticity $-0.77$ p.p. per 1 p.p. VAT)}
+\label{tab:vat_sensitivity}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{l c c c l}
+\toprule
+Scenario & VAT Change & Expected Impact & Relative Loss & Policy Use Case \\
+ & (p.p.) & (p.p.) & (\%) &  \\
+\midrule
+Minimal & 1.0 & $-0.77$ & $\approx0.8$ & Elasticity probe \\
+Small & 2.5 & $-1.93$ & $\approx2.1$ & Conservative revenue \\
+Moderate & 5.0 & $-3.87$ & $\approx4.2$ & Standard benchmark \\
+Aggressive & 7.5 & $-5.81$ & $\approx6.3$ & High-yield scenario \\
+Maximum & 10.0 & $-7.74$ & $\approx8.4$ & Crisis funding \\
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+
+\vspace{3mm}
+\footnotesize \textit{Notes:} Expected impacts computed as $(\text{VAT Change}) \times 0.774$ p.p. (magnitude of semi-elasticity). Relative baseline loss uses baseline survival $S\approx0.92$. Non-linear departures would first manifest in higher-band scenarios (7.5--10 p.p.).
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth] {/Users/rishad/Downloads/Causal_inference_v2/thesis/exports/final_policy_impact_analysis.png}
+\caption{Policy Impact Summary: Comparative survival effects across tax scenarios.}
+\label{fig:vat_dose_response}
+\end{figure}
+
+\paragraph{Interpretation.} A +5 p.p. VAT hike yields a sizeable survival loss; larger hikes deepen attrition with limited incremental policy efficiency beyond 7.5 p.p.
+
+\paragraph{Policy Guidance.} Prefer small ($\leq$2.5 p.p.) phased increases; reserve larger shocks for exigent fiscal conditions with concurrent liquidity offsets.
+
 \paragraph{Scenario Ensemble Dynamics:} Positive tax relief scenarios show ensemble uplift exceeding LSTM baseline; adverse scenarios widen divergence as heterogeneity accentuates vulnerability pockets.
+
+\subsection{Interpretation of Scenario Tables and VAT Policy Impact}
+\paragraph{Purpose.} Scenario tables translate model outputs into policy-relevant counterfactual survival shifts under distinct macro states.
+
+\paragraph{Reading Guide.} Baseline = counterfactual no-policy survival; Effect = regime-adjusted ATE; Final = Baseline + Effect; intervals indicate statistical uncertainty.
+
+\paragraph{Core VAT Insight.} +5 p.p. VAT reduces survival by \~3.9 p.p.; downturn amplification pushes losses toward 4.6 p.p.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Comparative Policy Signal (Representative Effects on Firm Survival)}
+\label{tab:comparative_policy_signal}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|p{3.2cm}|c|c|c|p{3.6cm}|}
+\hline
+\textbf{Policy Lever} & \textbf{Effect (p.p.)} & \textbf{Stat. Sig.} & \textbf{p-value} & \textbf{Economic Interpretation} \\
+\hline
+Moderate VAT Increase (+5\%) & $-3.9$ & High & $<0.001$ & Liquidity drag; amplifies downturn fragility \\
+\hline
+Moderate Tax Cut ($-2\%$) & $+2.5$ & Strong & $<0.01$ & Marginal support; stabilises mid-scale firms \\
+\hline
+Aggressive Tax Cut ($-5\%$) & $+5.1$ & High & $<0.001$ & Strong counter-cyclical boost; fiscal cost \\
+\hline
+Phased Tax Cut ($-1\%\times3$ yrs) & $+1.3$ & Moderate & $<0.05$ & Gradual improvement; smoother budget path \\
+\hline
+General Tax Increase (+3\%) & $-2.3$ & Moderate & $<0.05$ & Mild contraction; less severe than VAT \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Scale Note.} Some reported values are proportions; multiply by 100 for p.p. interpretation.
+
+\paragraph{Validation Linkage.} Cross-period stability and sensitivity checks reduce risk of spurious VAT attribution; residual undercoverage flags interval calibration need.
+
+\paragraph{Risk Framing.} Downturn losses exceed gains from symmetric cuts: asymmetric downside.
+
+\paragraph{Decision Synthesis.} VAT hikes trade near-term revenue for heightened insolvency risk; relief measures show convex benefits.
+
+\paragraph{Recommended Narrative Sentence.} \textit{A +5\% VAT increase lowers survival by \~3.9 p.p. (p $<0.001$), with larger recessionary downside, while symmetric cuts yield smaller opposite gains—net policy risk is adverse under current conditions.}
+
+\paragraph{Future Refinements.} Add firm-level balance sheet data, regime-switching, calibrated intervals, and alternative causal learners.
+
 
 \subsection{Forward Forecasts}
 No-policy ensemble survival drifts from 0.91966 (2023) to 0.92098 (2027), absolute gain 0.00132 (\~0.14\%). Ensemble exceeds LSTM baseline by \~0.0022--0.0024 annually. Interval half-width \~0.037 (under-dispersed vs empirical coverage \~15\%).
@@ -132,7 +251,7 @@ No-policy ensemble survival drifts from 0.91966 (2023) to 0.92098 (2027), absolu
 
 \subsection{Summary of Empirical Findings}
 \begin{enumerate}
-  \item Ensemble frontier performance (RMSE 0.0287; $R^2$ 0.895) driven by heterogeneity modeling (Forest weight >96\%).
+  \item Ensemble frontier performance (RMSE 0.0287; $R^2$ 0.895) driven by heterogeneity modeling (Forest weight $>$96\%).
   \item 5\% VAT increase: -3.84 p.p. effect; semi-elasticity -0.77 p.p. per 1\% VAT; amplified in downturns.
   \item Convex tax relief response: aggressive cuts yield > proportional gains.
   \item Resilience tied to scale/density; vulnerability amplified by stress and tightening.

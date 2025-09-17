@@ -51,6 +51,17 @@
 \newcommand{\LSTM}{LSTM}
 \newcommand{\CF}{Causal Forest}
 
+% Section divider macro: inserts a standalone title page (no page number) before each major section
+\newcommand{\SectionDivider}[1]{%
+  \clearpage
+  	{tittle}% suppress headers/footers
+  \begin{center}
+    \vspace*{0.35\textheight}
+    {\Huge\bfseries #1}\par
+  \end{center}
+  \clearpage
+}
+
 % Define keywords command for article class
 \newcommand{\keywords}[1]{\noindent\textbf{Keywords:} #1}
 
@@ -81,13 +92,29 @@
 \newpage
 \pagenumbering{arabic}
 
-% Main sections
+% Main sections with divider pages
+\SectionDivider{Introduction}
 \input{sections/introduction}
+
+\SectionDivider{Background Study}
+\input{sections/background}
+
+\SectionDivider{Literature Review}
 \input{sections/literature-review}
+
+\SectionDivider{Data}
 \input{sections/data}
+
+\SectionDivider{Methodology}
 \input{sections/methodology}
+
+\SectionDivider{Results}
 \input{sections/results}
+
+\SectionDivider{Discussion}
 \input{sections/discussion}
+
+\SectionDivider{Conclusion}
 \input{sections/conclusion}
 
 % Bibliography
