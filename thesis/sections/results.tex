@@ -14,7 +14,7 @@ Missingness was negligible; no synthetic imputation required. Volatility feature
 A modular hybrid architecture partitions responsibilities: (i) baseline forecasting; (ii) average causal identification; (iii) heterogeneity discovery; (iv) scenario synthesis. This prevents overloading a single model with incompatible objectives and preserves interpretability via decomposition.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/economic_data_overview.png}
+\includegraphics[width=0.90\textwidth]{/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/economic_data_overview.png}
 \caption{Economic Data Overview: Time series visualization of key macroeconomic indicators and firm dynamics metrics spanning 1977--2022.}
 \label{fig:economic_data_overview}
 \end{figure}
@@ -25,6 +25,15 @@ A modular hybrid architecture partitions responsibilities: (i) baseline forecast
 
 \subsection{Model Suite and Functional Differentiation}
 .
+
+Key functional delineations:
+\begin{itemize}
+  \item \textbf{LSTM}: Gated recurrent network for counterfactual baseline trajectory prediction.
+  \item \textbf{Double Machine Learning (DML)}: Orthogonalized partialling-out for unbiased Average Treatment Effect (ATE) under approximate unconfoundedness.
+  \item \textbf{Causal Forest}: Honest-split non-parametric estimator for Conditional Average Treatment Effects (CATEs) and interaction discovery.
+  \item \textbf{Hybrid Ensemble}: Performance-weighted convex combination delivering unified scenario forecasts and synthesized uncertainty.
+\end{itemize}
+
 \begin{table}[H]
 \centering
 \small
@@ -49,16 +58,29 @@ Hybrid Ensemble & Integrated policy evaluation & Performance-weighted convex com
 \hline
 \end{tabular}
 \end{table}
-Key functional delineations:
-\begin{itemize}
-  \item \textbf{LSTM}: Gated recurrent network for counterfactual baseline trajectory prediction.
-  \item \textbf{Double Machine Learning (DML)}: Orthogonalized partialling-out for unbiased Average Treatment Effect (ATE) under approximate unconfoundedness.
-  \item \textbf{Causal Forest}: Honest-split non-parametric estimator for Conditional Average Treatment Effects (CATEs) and interaction discovery.
-  \item \textbf{Hybrid Ensemble}: Performance-weighted convex combination delivering unified scenario forecasts and synthesized uncertainty.
-\end{itemize}
 Design rationale: separate forecasting from identification; elevate non-parametric heterogeneity mapping; retain transparency through explicit weight structure; enable future dynamic weighting or Bayesian averaging.
 
 \subsection{Forecast Performance and Predictive Accuracy}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Model Performance Comparison}
+\label{tab:model_performance}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{|l|c|c|c|c|p{2.7cm}|p{2.7cm}|}
+\hline
+\textbf{Model} & \textbf{RMSE} & $\mathbf{R^2}$ & \textbf{Causal Validity} & \textbf{Ensemble Weight} & \textbf{Primary Strength} & \textbf{Use Case} \\
+\hline
+LSTM Forecast & 0.0342 & 0.863 & N/A & 1.0\% & Temporal Patterns & Forecasting \\
+Double ML & 0.0456 & 0.794 & High & 4.8\% & Unbiased ATE & Policy Assessment \\
+Causal Forest & 0.0298 & 0.881 & High & 98.5\% & Heterogeneity & Targeted Policy \\
+Hybrid Ensemble & 0.0287 & 0.895 & High & 100\% (Combined) & Robust Integration & Comprehensive Analysis \\
+\hline
+\end{tabular}
+\end{table}
+
 Point predictive metrics (see Table~\ref{tab:model_performance} and model\_performance\_comparison.csv):
 \begin{itemize}
   \item Causal Forest: RMSE = 0.0298, $R^2$ = 0.881.
@@ -66,7 +88,14 @@ Point predictive metrics (see Table~\ref{tab:model_performance} and model\_perfo
   \item Double ML: RMSE = 0.0456, $R^2$ = 0.794 (not tuned for minimum prediction error).
   \item Hybrid Ensemble: RMSE = 0.0287, $R^2$ = 0.895 (frontier performance).
 \end{itemize}
-Relative improvements: Ensemble vs Forest RMSE gain $\approx 3.7\%$; Forest vs LSTM $\approx 12.9\%$; LSTM vs DML $\approx 25.0\%$. Ensemble weights: Causal Forest $\approx 96.05\%$, LSTM $\approx 3.48\%$, DML $\approx 0.47\%$ \textit{(dominance of heterogeneity structure)}. See Figure~\ref{fig:hybrid_results} if included.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth] {/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/final_policy_impact_analysis.png}
+\caption{COMPARATIVE MODEL PERFORMANCE: Comparative survival effects across tax scenarios.}
+\label{fig:vat_dose_response}
+\end{figure}
+Relative improvements: Ensemble vs Forest RMSE gain $\approx 3.7\%$; Forest vs LSTM $\approx 12.9\%$; LSTM vs DML $\approx 25.0\%$. Ensemble weights: Causal Forest $\approx 96.05\%$, LSTM $\approx 3.48\%$, DML $\approx 0.47\%$ \textit{(dominance of heterogeneity structure)}
 
 \subsection{Causal Effect Estimation (Average Effects)}
 Double ML ATE of 5\% VAT increase: $\hat{\tau} = -0.038398$ with 95\% CI $[-0.075808, -0.000988]$ ($p<0.01$). Relative reduction given baseline survival $S\approx0.92$ is $0.0384/0.92 \approx 4.17\%$. Effect interpretation:
@@ -77,21 +106,29 @@ Double ML ATE of 5\% VAT increase: $\hat{\tau} = -0.038398$ with 95\% CI $[-0.07
 \end{enumerate}
 Causal Forest mean (0.002458) is \emph{unconditional} and not directly comparable; scenario-aligned aggregation produces directional consistency (Section~\ref{sec:policy_scenarios}).
 
-\subsection{Heterogeneous Treatment Effects}
-CATE distribution (causal\_forest\_heterogeneous\_effects.csv): central tendency $\approx 0.0022$--0.0029 with early-period wide intervals (macro volatility) and modest narrowing post-2003. Period stratification:
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-Period & Mean CATE & Interval Width (qual.) & Driver Highlight \\
-\midrule
-1978--1985 & $\sim 0.0022$ & Wide & High rate/inflation volatility \\
-1986--1999 & $\sim 0.0024$ & Mod. Wide & Disinflation stabilization \\
-2000--2008 & $\sim 0.0025$ & Narrow→Wide & Credit tightening (2008) \\
-2009--2015 & $\sim 0.0026$ & Mixed & Post-crisis deleveraging \\
-2016--2022 & $0.0027$--0.0029 & Slightly narrower & Scale density accumulation \\
-\bottomrule
+\subsection{FINAL POLICY IMPACT ANALYSIS}
+If we focus on 5 \% VAT Increase - Causal Impact on Firm Survival (policy\_impact\_quantification.csv) We have the following results:
+\begin{table}[htbp]
+\centering
+\small
+\caption{Quantitative Policy Impact Results: Causal Effects of Tax and VAT Scenarios on Firm Survival}
+\label{tab:policy_impact_quantification}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{|p{2.0cm}|p{2.0cm}|c|p{1.5cm}|p{2.0cm}|c|p{2.0cm}|}
+\hline
+\textbf{Policy Scenario} & \textbf{Causal Effect on Survival} & \textbf{Confidence Interval} & \textbf{Affected Firms} & \textbf{Economic Conditions} & \textbf{Stat. Sig.} & \textbf{Policy Type} \\
+\hline
+Tax Cut (2\%) & $+0.0245$ & $[0.0089,\ 0.0401]$ & 18,500 & Growth Responsive & $p < 0.01$ & Tax Reduction \\
+\hline
+VAT Increase (5\%) & $-0.0387$ & $[-0.0623,\ -0.0151]$ & 22,800 & Recession Sensitive & $p < 0.001$ & VAT Increase \\
+\hline
+Aggressive Tax Cut (5\%) & $+0.0512$ & $[0.0234,\ 0.0790]$ & 25,000 & Universally Positive & $p < 0.001$ & Aggressive Tax Cut \\
+\hline
+Moderate Tax Increase (3\%) & $-0.0234$ & $[-0.0412,\ -0.0056]$ & 16,200 & Recession Sensitive & $p < 0.05$ & Tax Increase \\
+\hline
 \end{tabular}
-\end{center}
+\end{table}
 Resilience correlates with firm size and density; stress and high rates widen uncertainty. Policy shocks shift distribution location beyond unconditional means—underscoring scenario conditioning necessity.
 
 \subsection{Feature Importance and Structural Drivers}
@@ -133,7 +170,7 @@ Semi-elasticity (VAT): $-0.0387 / 0.05 \approx -0.774$ p.p. survival per 1\% VAT
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/interactive_vat_5.0percent_analysis.png}
+\includegraphics[width=1.0\textwidth]{/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/interactive_vat_5.0percent_analysis.png}
 \caption{Interactive regime comparison for +5 percentage point VAT: baseline vs. post-shock survival across macro states.}
 \label{fig:interactive_vat_5pct}
 \end{figure}
@@ -208,12 +245,7 @@ Maximum & 10.0 & $-7.74$ & $\approx8.4$ & Crisis funding \\
 \footnotesize \textit{Notes:} Expected impacts computed as $(\text{VAT Change}) \times 0.774$ p.p. (magnitude of semi-elasticity). Relative baseline loss uses baseline survival $S\approx0.92$. Non-linear departures would first manifest in higher-band scenarios (7.5--10 p.p.).
 \end{table}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.80\textwidth] {/Users/rishad/Downloads/ThesisPaperFinal/Defence-paper/thesis/exports/final_policy_impact_analysis.png}
-\caption{Policy Impact Summary: Comparative survival effects across tax scenarios.}
-\label{fig:vat_dose_response}
-\end{figure}
+
 
 \paragraph{Interpretation.} A +5 p.p. VAT hike yields a sizeable survival loss; larger hikes deepen attrition with limited incremental policy efficiency beyond 7.5 p.p.
 
