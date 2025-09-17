@@ -4,6 +4,19 @@
 
 Our hybrid causal ML pipeline addresses three fundamental challenges in policy evaluation: (1) identifying true causal relationships from observational data, (2) estimating effects amid complex confounding, and (3) forecasting policy impacts under uncertainty. This section presents our end-to-end workflow.
 
+\subsection{Methodological Overview}\label{subsec:methodology_overview}
+
+Figure~\ref{fig:modelplan} provides a visual overview of the proposed hybrid causal machine learning framework, illustrating the integration of LSTM forecasting, DoubleML causal estimation, and Causal Forest heterogeneity modeling within the VAT policy evaluation pipeline.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/modelplan.png}
+    \caption{Hybrid Causal Machine Learning Framework for VAT Policy Analysis}
+    \label{fig:modelplan}
+\end{figure}
+
+
+
 \subsubsection{Stage 1: Causal Discovery}
 \textbf{Rationale:} Traditional econometric models often assume known causal structures. We instead use data-driven discovery to uncover the actual relationships between VAT policy and economic outcomes.
 
@@ -107,3 +120,16 @@ We assess model performance across multiple dimensions:
     \item \textbf{Confidence Interval Coverage}: Statistical reliability of uncertainty quantification
     \item \textbf{Policy Regret}: Expected loss from suboptimal policy choices based on model recommendations
 \end{itemize}
+
+
+\subsubsection{Complete Hybrid Model Architecture}
+The following figure illustrates the complete integration of all methodological components within our hybrid causal machine learning framework:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{exports/methodology.png}
+    \caption{Complete Hybrid Causal Machine Learning Model Architecture}
+    \label{fig:complete_methodology}
+\end{figure}
+
+This comprehensive architecture demonstrates how causal discovery, DoubleML estimation, LSTM forecasting, and Causal Forest heterogeneity analysis work together to provide robust policy evaluation capabilities under uncertainty.
