@@ -2,4 +2,47 @@
 \appendix
 \section{Appendix}
 
-% Your appendix goes here.
+
+
+% Results Appendix Tables
+\section{Results Tables}
+
+The following tables present detailed results referenced in the main text. All tables are included in the appendix for transparency and reproducibility.
+
+% Note: Requires \usepackage{csvsimple} in preamble for \csvautotabular
+
+\subsection{Causal Forest Feature Importance}
+\label{app:cf_feature_importance}
+\csvautotabular{../results/causal_forest_feature_importance.csv}
+
+\subsection{Causal Forest Heterogeneous Effects}
+\label{app:cf_heterogeneous_effects}
+\csvautotabular{../results/causal_forest_heterogeneous_effects.csv}
+
+\subsection{Causal Forest Policy Recommendations}
+\label{app:cf_policy_recommendations}
+\csvautotabular{../results/causal_forest_policy_recommendations.csv}
+
+\subsection{DML Feature Importance}
+\label{app:dml_feature_importance}
+\csvautotabular{../results/dml_feature_importance.csv}
+
+\subsection{DML Heterogeneous Effects}
+\label{app:dml_heterogeneous_effects}
+\csvautotabular{../results/dml_heterogeneous_effects.csv}
+
+\subsection{Hybrid Economic Forecasts}
+\label{app:hybrid_economic_forecasts}
+\csvautotabular{../results/hybrid_economic_forecasts.csv}
+
+\subsection{LSTM Forecasts}
+\label{app:lstm_forecasts}
+\csvautotabular{../results/lstm_forecasts.csv}
+
+\subsection{Policy Impact Metrics}
+\label{app:policy_impact_metrics}
+\csvautotabular{../results/policy_impact_metrics.csv}
+
+\subsection{Policy Scenario Analysis}
+\label{app:policy_scenario_analysis}
+\csvautotabular{../results/policy_scenario_analysis.csv}
