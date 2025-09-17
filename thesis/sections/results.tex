@@ -14,7 +14,31 @@ Missingness was negligible; no synthetic imputation required. Volatility feature
 A modular hybrid architecture partitions responsibilities: (i) baseline forecasting; (ii) average causal identification; (iii) heterogeneity discovery; (iv) scenario synthesis. This prevents overloading a single model with incompatible objectives and preserves interpretability via decomposition.
 
 \subsection{Model Suite and Functional Differentiation}
-Table~\ref{tab:model_comparison} (external) summarizes components:
+\begin{table}[htbp]
+\centering
+\small
+\caption{Model Components: Objectives, Mechanisms, Outputs, and Trade-offs}
+\label{tab:model_comparison}
+% Bordered version with clarified wording
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+% Adjusted first column width to avoid header text overlap
+\begin{tabular}{|p{2.2cm}|p{2.3cm}|p{3.0cm}|p{2.5cm}|p{2.3cm}|p{2.4cm}|}
+% chktex-file 44
+\hline
+\textbf{Component} & \textbf{Objective} & \textbf{Core Mechanism} & \textbf{Key Output} & \textbf{Strength} & \textbf{Limitation} \\
+\hline
+LSTM & Baseline forecasting & Gated recurrent sequence modeling & Baseline counterfactual trajectory & Captures temporal persistence & Data hungry; opaque \\
+\hline
+Double ML & Average causal effect & Orthogonalized partialling-out with ML nuisance models & ATE with 95\% CI & Bias reduction under high-dim. confounding & Assumes (approx.) unconfoundedness \\
+\hline
+Causal Forest & Heterogeneity mapping & Honest splitting; localized treatment effect estimation & CATE distribution; feature split structure & Discovers interaction structure & Sample fragmentation risk \\
+\hline
+Hybrid Ensemble & Integrated policy evaluation & Performance-weighted convex combination & Unified scenario forecasts & Aggregates strengths; robustness & Static weights (current impl.) \\
+\hline
+\end{tabular}
+\end{table}
+Key functional delineations:
 \begin{itemize}
   \item \textbf{LSTM}: Gated recurrent network for counterfactual baseline trajectory prediction.
   \item \textbf{Double Machine Learning (DML)}: Orthogonalized partialling-out for unbiased Average Treatment Effect (ATE) under approximate unconfoundedness.
