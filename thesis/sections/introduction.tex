@@ -22,15 +22,21 @@ These constraints reduce the reliability of counterfactual estimates derived fro
 \begin{quote}
 \textbf{Primary Research Question:}
 
-How can a hybrid causal machine learning framework---combining forecasting, causal estimation, and heterogeneity modeling---enhance counterfactual policy analysis compared to traditional inference?
+How does a hybrid causal machine learning framework that integrates sequence forecasting (LSTM), orthogonalized causal effect estimation (DoubleML), and treatment effect heterogeneity modeling (Causal Forest) improve the accuracy, interpretability, and policy relevance of counterfactual VAT policy analysis compared to conventional econometric approaches?
 
-\textbf{Sub-Questions:}
+\textbf{Refined Sub-Questions:}
 
 \begin{enumerate}
-    \item How do macroeconomic indicators respond to VAT changes under deep learning-based forecasting models?
-    \item How effectively can DoubleML isolate VAT effects while adjusting for high-dimensional confounders?
-    \item How does the effect of VAT vary across demographic subgroups, and how can Causal Forests reveal this heterogeneity?
-    \item Can the integration of these models reduce expected policy regret and improve the design of future fiscal interventions?
+    \item \textbf{Forecasting Baseline:} To what extent do LSTM-based macroeconomic forecasts (GDP growth, unemployment, CPI, sectoral indicators) reduce baseline prediction error versus benchmark ARIMA / VAR models prior to VAT interventions?
+    
+    \item \textbf{Average Causal Effect:} What is the estimated average treatment effect of VAT rate changes on key macroeconomic outcomes after orthogonalizing high-dimensional controls using DoubleML, and how does this estimate differ from traditional fixed-effects or difference-in-differences models?
+    
+    \item \textbf{Heterogeneous Effects:} How do VAT impacts vary across economic strata (e.g., income quantiles, sectors, firm size, consumption baskets), and can Causal Forests uncover statistically robust heterogeneity not detectable via parametric interaction models?
+    
+    \item \textbf{Policy Simulation \& Regret:} Does combining improved counterfactual forecasts with heterogeneous treatment effect estimates reduce expected policy regret (e.g., welfare loss or mis-targeting) under alternative VAT adjustment scenarios?
+    
+    \item \textbf{Model Integration Value:} What incremental explanatory or decision value (e.g., uplift in out-of-sample policy effect precision, narrower confidence intervals, better targeting efficiency) is attributable to integrating the three model classes versus using any single component in isolation?
+
 \end{enumerate}
 \end{quote}
 
@@ -38,17 +44,16 @@ How can a hybrid causal machine learning framework---combining forecasting, caus
 
 This thesis makes the following contributions:
 
-\begin{itemize}
-    \item \textbf{A unified hybrid framework} for causal economic policy evaluation, combining diverse modeling paradigms including deep learning and causal inference.
-    
-    \item \textbf{A modular causal pipeline} consisting of discovery, estimation, validation, and simulation, tailored for robust counterfactual reasoning in fiscal policy.
-    
-    \item \textbf{Empirical results} derived from macroeconomic time-series data and household-level demographic data.
-    
-    \item \textbf{Granular treatment effect} estimation, allowing for the discovery of group-specific policy impacts using Causal Forests.
-    
-    \item \textbf{Comparative analysis}, demonstrating the advantages of this hybrid framework over traditional econometric approaches in flexibility, robustness, and real-world relevance.
-\end{itemize}
+\begin{enumerate}
+  \item \textbf{Hybrid Framework:} Proposes an integrated VAT policy evaluation framework combining deep sequence forecasting (LSTM), orthogonalized causal estimation (DoubleML), and non-parametric heterogeneity modeling (Causal Forest), delivering quantifiable improvements in forecast accuracy, treatment effect precision, and policy decision quality.
+  \item \textbf{Modular Causal Pipeline:} Implements a four-stage pipeline (discovery, estimation, validation, simulation) with embedded diagnostics (balance, overlap, sensitivity, calibration) to support transparent counterfactual inference.
+  \item \textbf{Macro--Micro Data Integration:} Constructs a reproducible linkage of macroeconomic time-series and household-level demographic data, enabling simultaneous estimation of aggregate and distributional effects of VAT changes.
+  \item \textbf{Heterogeneous Effects Estimation:} Produces statistically validated subgroup treatment effect estimates using honest Causal Forests, with heterogeneity confirmed via permutation tests, calibration assessments, and confidence interval coverage analyses.
+  \item \textbf{Comparative Evaluation:} Empirically benchmarks the hybrid approach against traditional econometric baselines (ARIMA/VAR, fixed-effects OLS, Difference-in-Differences), showing reductions in forecast RMSE, narrower ATE confidence intervals, and detection of economically meaningful heterogeneity.
+  \item \textbf{Policy Regret Reduction:} Defines an expected policy regret functional over alternative VAT scenarios and demonstrates that the integrated framework achieves lower simulated welfare regret than any single model component.
+  \item \textbf{Reproducibility and Auditability:} Delivers configuration-managed experiments (versioned code, fixed random seeds, documented preprocessing) enabling end-to-end replication of all empirical results.
+
+\end{enumerate}
 
 \subsection{Structure of the Paper}\label{subsec:structure}
 
@@ -73,11 +78,4 @@ Recent advances in machine learning and modern causal inference offer promising 
 This thesis responds to these needs by developing a hybrid modeling framework that integrates machine learning forecasting with causal inference pipelines to evaluate the macroeconomic and distributional impacts of VAT policy adjustments. By unifying rigorous identification logic with flexible function approximation, the framework seeks to provide more reliable policy-relevant counterfactuals and to surface heterogeneity essential for equitable and efficient fiscal design. The subsequent sections detail the data architecture, modeling strategy, empirical evaluation, and policy interpretation.
 
 
-\subsection{Research Question}
-% Research question content
-
-\subsection{Contributions}
-% Contributions content
-
-\subsection{Structure of the Thesis}
 % Structure content
