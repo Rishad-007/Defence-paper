@@ -1,6 +1,16 @@
 % Appendix section template
 \appendix
+
 \section{Appendix}
+
+\subsection{Additional Resources}
+
+The code and supplementary files for this paper are available on GitHub at: 
+\url{https://github.com/Rishad-007/A-Novel-VAT-Policy-Impact-Analysis-with-a-Hybrid-Machine-Learning-Approach}
+
+
+
+
 
 \subsection{All Result Tables}\label{subsec:additional_result_tables}
 
@@ -110,6 +120,7 @@ expansion&0.3029934640530565&-0.07889934982870817&0.684886277934821&4.0&3.5&3.0&
 \begin{table}[H]
 \centering
 \caption{Hybrid Economic Forecasts (2023--2027)}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \textbf{year} & \textbf{lstm\_survival\_rate} & \textbf{dml\_adjusted\_rate} & \textbf{cf\_adjusted\_rate} & \textbf{ensemble\_survival\_rate} & \textbf{prediction\_uncertainty} & \textbf{ci\_lower} & \textbf{ci\_upper} & \textbf{GDP\_Growth} & \textbf{Unemployment} & \textbf{Inflation} \\
@@ -125,12 +136,14 @@ expansion&0.3029934640530565&-0.07889934982870817&0.684886277934821&4.0&3.5&3.0&
 2027 & 0.9137 & 0.8753 & 0.9161 & 0.9159 & 0.0187 & 0.8793 & 0.9526 & 0.6208 & 5.9743 & 0.5038 \\
 \hline
 \end{tabular}
+}
 \end{table}
 
 
 \begin{table}[H]
 \centering
 \caption{LSTM forecasts}
+\centering
 \begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
 GDP\_Growth & Inflation & Unemployment & InterestRate & survival\_rate & year & forecast\_type \\
@@ -144,8 +157,7 @@ GDP\_Growth & Inflation & Unemployment & InterestRate & survival\_rate & year & 
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
-\centering
+\begin{sidewaystable}
 \caption{Policy Impact Summary}
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
@@ -157,13 +169,12 @@ phased\_tax\_cut & 1\% tax cut annually for 3 years & 0.0001342632712590941 & 2.
 tax\_increase & 3\% tax increase for deficit reduction & -0.00033565817814817933 & -6.713163562965807e-05 & -6.713163562965807e-05 & 0 & 0.021707068893920257 & -0.003092616325019376 \\
 \hline
 \end{tabular}
-\end{table}
+\end{sidewaystable}
 
 
-\begin{sidewaystable}[H]
-\centering
+\begin{sidewaystable}
 \caption{Scenario-based Economic Forecasts (2023--2027) under Different Policy Regimes}
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \textbf{year} & \textbf{lstm\_survival\_rate} & \textbf{dml\_adjusted\_rate} & \textbf{cf\_adjusted\_rate} & \textbf{ensemble\_survival\_rate} & \textbf{prediction\_uncertainty} & \textbf{ci\_lower} & \textbf{ci\_upper} & \textbf{GDP\_Growth} & \textbf{Unemployment} & \textbf{Inflation} & \textbf{scenario} & \textbf{scenario\_description} \\
 \hline
